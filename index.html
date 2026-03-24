@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Pradhiksha B — Portfolio</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{
+    --bg:#0a0e17;
+    --bg2:#0f1420;
+    --bg3:#141928;
+    --card:#161c2d;
+    --card2:#1a2235;
+    --border:#1e2a40;
+    --border2:#243050;
+    --navy:#1e3a5f;
+    --accent:#4f9cf9;
+    --accent2:#64b5f6;
+    --accent3:#0d47a1;
+    --glow:rgba(79,156,249,0.15);
+    --text:#e8edf5;
+    --muted:#8899b4;
+    --dim:#4a5568;
+    --white:#ffffff;
+    --grad:linear-gradient(135deg,#4f9cf9,#7c3aed);
+  }
+  html{scroll-behavior:smooth;}
+  body{font-family:'Segoe UI',Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden;}
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar{width:6px;}
+  ::-webkit-scrollbar-track{background:var(--bg);}
+  ::-webkit-scrollbar-thumb{background:var(--navy);border-radius:3px;}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,14,23,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2.5rem;display:flex;align-items:center;justify-content:space-between;height:62px;}
+  .nav-logo{font-size:1.3rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:1px;}
+  .nav-links{display:flex;gap:2rem;list-style:none;}
+  .nav-links a{color:var(--muted);text-decoration:none;font-size:0.88rem;font-weight:500;transition:color 0.2s;letter-spacing:0.3px;}
+  .nav-links a:hover{color:var(--accent);}
+
+  /* HERO */
+  .hero{min-height:100vh;background:var(--bg2);display:flex;align-items:center;justify-content:center;padding:100px 2rem 4rem;text-align:center;position:relative;overflow:hidden;}
+  .hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(79,156,249,0.07) 0%,transparent 70%);pointer-events:none;}
+  .hero::after{content:'';position:absolute;bottom:-100px;right:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(124,58,237,0.06) 0%,transparent 70%);pointer-events:none;}
+  .hero-inner{max-width:680px;position:relative;z-index:1;}
+  .avatar{width:120px;height:120px;border-radius:50%;background:var(--card);border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;font-size:2.8rem;font-weight:800;color:var(--accent);margin:0 auto 1.8rem;overflow:hidden;box-shadow:0 0 30px rgba(79,156,249,0.2);}
+  .avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%;}
+  .hero-badge{display:inline-flex;align-items:center;gap:0.5rem;background:var(--card);border:1px solid var(--border2);border-radius:20px;padding:0.35rem 1rem;font-size:0.82rem;color:var(--accent);margin-bottom:1.2rem;font-weight:600;}
+  .hero-badge::before{content:'';width:7px;height:7px;border-radius:50%;background:#4ade80;flex-shrink:0;}
+  .hero h1{font-size:3rem;font-weight:800;color:var(--white);letter-spacing:-0.5px;margin-bottom:0.5rem;line-height:1.15;}
+  .hero h1 span{background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+  .hero .tagline{font-size:1.1rem;color:var(--muted);margin-bottom:1rem;}
+  .hero .sub{font-size:0.96rem;color:var(--dim);max-width:500px;margin:0 auto 2rem;line-height:1.8;}
+  .hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+  .btn-primary{background:var(--grad);color:#fff;padding:0.7rem 1.8rem;border-radius:30px;font-weight:700;text-decoration:none;font-size:0.93rem;transition:transform 0.2s,box-shadow 0.2s;box-shadow:0 4px 20px rgba(79,156,249,0.3);}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(79,156,249,0.4);}
+  .btn-outline{border:1px solid var(--border2);color:var(--accent);background:transparent;padding:0.7rem 1.8rem;border-radius:30px;font-weight:600;text-decoration:none;font-size:0.93rem;transition:all 0.2s;}
+  .btn-outline:hover{background:var(--card);border-color:var(--accent);}
+
+  /* SECTION */
+  section{padding:5.5rem 2rem;}
+  .container{max-width:1020px;margin:0 auto;}
+  .section-label{font-size:0.78rem;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin-bottom:0.5rem;}
+  .section-title{font-size:2rem;font-weight:800;color:var(--white);margin-bottom:0.5rem;}
+  .section-sub{font-size:0.95rem;color:var(--muted);margin-bottom:3rem;}
+
+  /* ABOUT */
+  #about{background:var(--bg);}
+  .about-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:3.5rem;align-items:start;}
+  .about-text p{font-size:0.97rem;color:var(--muted);margin-bottom:1rem;line-height:1.85;}
+  .traits{display:flex;flex-wrap:wrap;gap:0.6rem;margin-top:1.4rem;}
+  .trait{background:var(--card);border:1px solid var(--border2);border-radius:20px;padding:0.38rem 1rem;font-size:0.83rem;color:var(--accent2);font-weight:600;}
+  .about-stats{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+  .stat-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.4rem;text-align:center;transition:border-color 0.2s;}
+  .stat-card:hover{border-color:var(--accent);}
+  .stat-num{font-size:2.2rem;font-weight:800;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+  .stat-label{font-size:0.8rem;color:var(--muted);margin-top:0.3rem;}
+
+  /* SKILLS */
+  #skills{background:var(--bg2);}
+  .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.5rem;}
+  .skill-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.6rem;transition:border-color 0.2s,transform 0.2s;}
+  .skill-card:hover{border-color:var(--accent);transform:translateY(-3px);}
+  .skill-card-title{font-size:0.95rem;font-weight:700;color:var(--white);margin-bottom:1.2rem;display:flex;align-items:center;gap:0.6rem;}
+  .skill-card-title span{font-size:1.1rem;}
+  .skill-item{margin-bottom:1rem;}
+  .skill-label{display:flex;justify-content:space-between;font-size:0.85rem;color:var(--muted);margin-bottom:5px;}
+  .skill-pct{color:var(--accent);font-weight:600;}
+  .skill-bar-bg{background:var(--bg3);border-radius:10px;height:6px;overflow:hidden;}
+  .skill-bar{height:6px;border-radius:10px;background:var(--grad);}
+
+  /* EXPERIENCE */
+  #experience{background:var(--bg);}
+  .timeline{position:relative;padding-left:2.2rem;}
+  .timeline::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:1px;background:var(--border2);}
+  .timeline-item{position:relative;margin-bottom:2.5rem;}
+  .timeline-dot{position:absolute;left:-2.2rem;top:8px;width:16px;height:16px;border-radius:50%;background:var(--grad);box-shadow:0 0 12px rgba(79,156,249,0.4);}
+  .timeline-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.6rem;transition:border-color 0.2s;}
+  .timeline-card:hover{border-color:var(--border2);}
+  .timeline-header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:0.5rem;margin-bottom:0.4rem;}
+  .timeline-card h3{font-size:1.05rem;font-weight:700;color:var(--white);}
+  .duration-badge{background:var(--bg3);border:1px solid var(--border2);border-radius:12px;padding:0.2rem 0.7rem;font-size:0.78rem;color:var(--muted);}
+  .timeline-role{font-size:0.9rem;color:var(--accent);font-weight:600;margin-bottom:0.3rem;}
+  .timeline-link{font-size:0.8rem;color:var(--dim);margin-bottom:1rem;font-style:italic;}
+  .timeline-card ul{padding-left:1.1rem;}
+  .timeline-card ul li{font-size:0.91rem;color:var(--muted);margin-bottom:0.45rem;line-height:1.7;}
+
+  /* PROJECTS */
+  #projects{background:var(--bg2);}
+  .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;}
+  .project-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:transform 0.25s,border-color 0.25s,box-shadow 0.25s;}
+  .project-card:hover{transform:translateY(-5px);border-color:var(--accent);box-shadow:0 8px 32px rgba(79,156,249,0.12);}
+  .project-top{padding:1.4rem 1.6rem 1rem;border-bottom:1px solid var(--border);}
+  .project-icon-row{display:flex;align-items:center;gap:0.8rem;margin-bottom:0.8rem;}
+  .project-icon{width:42px;height:42px;border-radius:10px;background:var(--bg3);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:1.3rem;}
+  .project-card h3{font-size:1rem;font-weight:700;color:var(--white);}
+  .project-body{padding:1rem 1.6rem 1.4rem;}
+  .project-body p{font-size:0.88rem;color:var(--muted);margin-bottom:1rem;line-height:1.65;}
+  .tech-tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-bottom:1.1rem;}
+  .tech-tag{background:var(--bg3);border:1px solid var(--border2);border-radius:10px;padding:0.2rem 0.6rem;font-size:0.76rem;color:var(--accent2);font-weight:600;}
+  .project-link{display:inline-flex;align-items:center;gap:0.3rem;font-size:0.85rem;color:var(--accent);font-weight:600;text-decoration:none;transition:gap 0.2s;}
+  .project-link:hover{gap:0.6rem;}
+
+  /* CERTIFICATIONS */
+  #certifications{background:var(--bg);}
+  .cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.2rem;}
+  .cert-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.3rem 1.5rem;display:flex;align-items:center;gap:1.1rem;transition:border-color 0.2s,transform 0.2s;}
+  .cert-card:hover{border-color:var(--accent);transform:translateX(4px);}
+  .cert-icon{width:46px;height:46px;border-radius:12px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;}
+  .cert-name{font-size:0.93rem;font-weight:700;color:var(--white);}
+  .cert-org{font-size:0.81rem;color:var(--muted);margin-top:0.2rem;}
+
+  /* ACHIEVEMENTS */
+  #achievements{background:var(--bg2);}
+  .achieve-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.3rem;}
+  .achieve-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.5rem;display:flex;gap:1.1rem;align-items:flex-start;transition:border-color 0.2s;}
+  .achieve-card:hover{border-color:var(--accent);}
+  .achieve-badge{width:46px;height:46px;border-radius:12px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;box-shadow:0 4px 14px rgba(79,156,249,0.25);}
+  .achieve-text h4{font-size:0.95rem;font-weight:700;color:var(--white);margin-bottom:0.4rem;}
+  .achieve-text p{font-size:0.87rem;color:var(--muted);line-height:1.65;}
+
+  /* CONTACT */
+  #contact{background:var(--bg);}
+  .contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:3.5rem;align-items:start;}
+  .contact-info p{color:var(--muted);margin-bottom:2rem;font-size:0.97rem;line-height:1.8;}
+  .contact-item{display:flex;align-items:center;gap:0.9rem;margin-bottom:1.1rem;}
+  .contact-icon{width:40px;height:40px;border-radius:10px;background:var(--card);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+  .contact-text{font-size:0.9rem;color:var(--muted);}
+  .contact-form{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:2rem;}
+  .form-group{margin-bottom:1.2rem;}
+  .form-group label{display:block;font-size:0.82rem;color:var(--muted);margin-bottom:0.45rem;font-weight:600;letter-spacing:0.3px;}
+  .form-group input,.form-group textarea{width:100%;background:var(--bg2);border:1px solid var(--border2);border-radius:10px;padding:0.75rem 1rem;color:var(--text);font-size:0.92rem;outline:none;transition:border-color 0.2s;font-family:inherit;}
+  .form-group input:focus,.form-group textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(79,156,249,0.08);}
+  .form-group textarea{min-height:115px;resize:vertical;}
+  .form-group input::placeholder,.form-group textarea::placeholder{color:var(--dim);}
+  .btn-send{background:var(--grad);color:#fff;border:none;padding:0.8rem 2rem;border-radius:30px;font-weight:700;font-size:0.95rem;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;width:100%;letter-spacing:0.3px;}
+  .btn-send:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(79,156,249,0.35);}
+  .form-msg{display:none;text-align:center;margin-top:0.9rem;font-size:0.88rem;color:#4ade80;font-weight:600;}
+
+  /* FOOTER */
+  footer{background:var(--bg2);border-top:1px solid var(--border);padding:1.8rem 2rem;text-align:center;color:var(--dim);font-size:0.84rem;}
+  footer span{color:var(--accent);}
+
+  @media(max-width:720px){
+    .about-grid,.contact-grid{grid-template-columns:1fr;}
+    .hero h1{font-size:2.2rem;}
+    .nav-links{gap:1rem;}
+    .timeline-header{flex-direction:column;}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">PB</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="avatar"><img src="pradhiksha.jpeg" alt="Pradhiksha B"/></div>
+    <div class="hero-badge">Open to Internships &amp; Opportunities</div>
+    <h1>Pradhiksha <span>B</span></h1>
+    <div class="tagline">Front-End Web Developer &amp; CS Undergraduate</div>
+    <p class="sub">Building responsive, user-friendly web experiences from Chennai. Passionate about clean code, continuous learning, and turning ideas into reality.</p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-primary">View My Work</a>
+      <a href="#contact" class="btn-outline">Get In Touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-label">Who I Am</div>
+    <div class="section-title">About Me</div>
+    <div class="section-sub">A little bit about my journey, values, and what drives me.</div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>Hi! I'm Pradhiksha, a Computer Science undergraduate at DDGDVC College, Chennai. I have a genuine passion for web development and building things that make an impact on the internet.</p>
+        <p>I've completed two industry internships — at Prodigy Infotech and Cognifyz Technologies — developing interactive web apps and integrating real-time APIs. I scored 93.8% in my 10th and 83.5% in my 12th, and I bring that same focus to every project I take on.</p>
+        <p>Beyond tech, I'm an NCC-certified cadet and an international conference attendee (ICCN 2026). I strongly believe great developers are shaped by character as much as code — I thrive in new environments, lead with positivity, and never stop learning.</p>
+        <div class="traits">
+          <span class="trait">&#x1F30E; Adaptable</span>
+          <span class="trait">&#x1F4AA; Leadership</span>
+          <span class="trait">&#x1F4DA; Lifelong Learner</span>
+          <span class="trait">&#x2728; Positive Mindset</span>
+          <span class="trait">&#x1F91D; Team Player</span>
+          <span class="trait">&#x1F3AF; Detail-Oriented</span>
+        </div>
+      </div>
+      <div class="about-stats">
+        <div class="stat-card"><div class="stat-num">2</div><div class="stat-label">Industry Internships</div></div>
+        <div class="stat-card"><div class="stat-num">5+</div><div class="stat-label">Projects Built</div></div>
+        <div class="stat-card"><div class="stat-num">93.8%</div><div class="stat-label">10th Score</div></div>
+        <div class="stat-card"><div class="stat-num">83.5%</div><div class="stat-label">12th Score</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-label">What I Know</div>
+    <div class="section-title">Technical Skills</div>
+    <div class="section-sub">Languages, tools, and specialisations I work with.</div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-card-title"><span>&#x1F4BB;</span> Languages</div>
+        <div class="skill-item"><div class="skill-label"><span>HTML &amp; CSS</span><span class="skill-pct">90%</span></div><div class="skill-bar-bg"><div class="skill-bar" style="width:90%"></div></div></div>
+        <div class="skill-item"><div class="skill-label"><span>JavaScript</span><span class="skill-pct">80%</span></div><div class="skill-bar-bg"><div class="skill-bar" style="width:80%"></div></div></div>
+        <div class="skill-item"><div class="skill-label"><span>Python</span><span class="skill-pct">65%</span></div><div class="skill-bar-bg"><div class="skill-bar" style="width:65%"></div></div></div>
+        <div class="skill-item"><div class="skill-label"><span>Java / C++</span><span class="skill-pct">60%</span></div><div class="skill-bar-bg"><div class="skill-bar" style="width:60%"></div></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title"><span>&#x1F6E0;</span> Tools &amp; Platforms</div>
+        <div class="skill-item"><div class="skill-label"><span>VS Code</span><span class="skill-pct">88%</span></div><div class="skill-bar-bg"><div class="skill-bar" style="width:88%"></div></div></div>
+        <div class="skill-item"><div class="skill-label"><span>Git &amp; GitHub</span><span class="skill-pct">75%</span></div><div class="skill-bar-bg"><div class="skill-bar" style="width:75%"></div></div></div>
+        <div class="skill-item"><div class="skill-label"><span>REST APIs</span><span class="skill-pct">70%</span></div><div class="skill-bar-bg"><div class="skill-bar" style="width:70%"></div></div></div>
+        <div class="skill-item"><div class="skill-label"><span>Android (Basic)</span><span class="skill-pct">40%</span></div><div class="skill-bar-bg"><div class="skill-bar" style="width:40%"></div></div></div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-title"><span>&#x1F4A1;</span> Specialisation</div>
+        <div class="skill-item"><div class="skill-label"><span>Responsive Web Design</span><span class="skill-pct">88%</span></div><div class="skill-bar-bg"><div class="skill-bar" style="width:88%"></div></div></div>
+        <div class="skill-item"><div class="skill-label"><span>API Integration</span><span class="skill-pct">75%</span></div><div class="skill-bar-bg"><div class="skill-bar" style="width:75%"></div></div></div>
+        <div class="skill-item"><div class="skill-label"><span>DOM Manipulation</span><span class="skill-pct">82%</span></div><div class="skill-bar-bg"><div class="skill-bar" style="width:82%"></div></div></div>
+        <div class="skill-item"><div class="skill-label"><span>Version Control</span><span class="skill-pct">72%</span></div><div class="skill-bar-bg"><div class="skill-bar" style="width:72%"></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-label">Where I've Worked</div>
+    <div class="section-title">Work Experience</div>
+    <div class="section-sub">Internships that shaped my development skills.</div>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <h3>Prodigy Infotech</h3>
+            <span class="duration-badge">1 Month</span>
+          </div>
+          <div class="timeline-role">Web Development Intern</div>
+          <div class="timeline-link">Portfolio: prodigyinfotech.com/pradhiksha</div>
+          <ul>
+            <li>Developed 3+ interactive web pages (Tic-Tac-Toe, Calculator, Stopwatch), reducing manual testing time by 30% through modular JavaScript.</li>
+            <li>Engineered a responsive course registration page improving form usability for 100+ simulated users.</li>
+            <li>Contributed to a 20% improvement in cross-browser rendering consistency through code reviews.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <h3>Cognifyz Technologies</h3>
+            <span class="duration-badge">1 Month</span>
+          </div>
+          <div class="timeline-role">Web Development Intern</div>
+          <ul>
+            <li>Built a live weather detection app integrating OpenWeatherMap API with the browser Geolocation API.</li>
+            <li>Reduced data-fetch latency by ~25% through optimised API call handling and DOM rendering logic.</li>
+            <li>Delivered clean, standards-compliant HTML/CSS/JavaScript resulting in a portfolio-ready application.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-label">What I've Built</div>
+    <div class="section-title">Projects</div>
+    <div class="section-sub">A selection of projects from my internships and personal work.</div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-top">
+          <div class="project-icon-row"><div class="project-icon">&#x1F326;</div><h3>Weather Detector App</h3></div>
+          <div class="tech-tags"><span class="tech-tag">HTML</span><span class="tech-tag">CSS</span><span class="tech-tag">JavaScript</span><span class="tech-tag">Weather API</span><span class="tech-tag">Geolocation</span></div>
+        </div>
+        <div class="project-body">
+          <p>Auto-detects the user's location and fetches real-time weather data — temperature, humidity, and conditions — using OpenWeatherMap + Geolocation APIs.</p>
+          <a href="#" class="project-link">View Project &#x2192;</a>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-top">
+          <div class="project-icon-row"><div class="project-icon">&#x1F4DD;</div><h3>Course Registration Page</h3></div>
+          <div class="tech-tags"><span class="tech-tag">HTML</span><span class="tech-tag">CSS</span><span class="tech-tag">JavaScript</span></div>
+        </div>
+        <div class="project-body">
+          <p>Structured web form with client-side validation ensuring accurate data entry and smooth form-submission flow for 100+ simulated users.</p>
+          <a href="#" class="project-link">View Project &#x2192;</a>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-top">
+          <div class="project-icon-row"><div class="project-icon">&#x274C;</div><h3>Tic-Tac-Toe Game</h3></div>
+          <div class="tech-tags"><span class="tech-tag">HTML</span><span class="tech-tag">CSS</span><span class="tech-tag">JavaScript</span></div>
+        </div>
+        <div class="project-body">
+          <p>Fully interactive two-player game with win/draw-detection logic and real-time state management for a smooth in-browser gaming experience.</p>
+          <a href="#" class="project-link">View Project &#x2192;</a>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-top">
+          <div class="project-icon-row"><div class="project-icon">&#x1F5A9;</div><h3>Calculator</h3></div>
+          <div class="tech-tags"><span class="tech-tag">HTML</span><span class="tech-tag">CSS</span><span class="tech-tag">JavaScript</span></div>
+        </div>
+        <div class="project-body">
+          <p>Responsive calculator supporting all arithmetic operations with a clean UI, showcasing DOM manipulation and event-handling skills.</p>
+          <a href="#" class="project-link">View Project &#x2192;</a>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-top">
+          <div class="project-icon-row"><div class="project-icon">&#x23F1;</div><h3>Digital Stopwatch</h3></div>
+          <div class="tech-tags"><span class="tech-tag">HTML</span><span class="tech-tag">CSS</span><span class="tech-tag">JavaScript</span></div>
+        </div>
+        <div class="project-body">
+          <p>Precise stopwatch with start, stop, and reset functionality using real-time interval management — clean, functional interface.</p>
+          <a href="#" class="project-link">View Project &#x2192;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="container">
+    <div class="section-label">Recognition</div>
+    <div class="section-title">Certifications</div>
+    <div class="section-sub">Certificates earned through internships and training.</div>
+    <div class="cert-grid">
+      <div class="cert-card"><div class="cert-icon">&#x1F3C6;</div><div><div class="cert-name">Web Development Internship Certificate</div><div class="cert-org">Prodigy Infotech</div></div></div>
+      <div class="cert-card"><div class="cert-icon">&#x1F3C6;</div><div><div class="cert-name">Web Development Internship Certificate</div><div class="cert-org">Cognifyz Technologies</div></div></div>
+      <div class="cert-card"><div class="cert-icon">&#x1F396;</div><div><div class="cert-name">NCC Certificate</div><div class="cert-org">National Cadet Corps — School Level</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="container">
+    <div class="section-label">Beyond Code</div>
+    <div class="section-title">Achievements &amp; Activities</div>
+    <div class="section-sub">Experiences that shaped my character alongside my skills.</div>
+    <div class="achieve-grid">
+      <div class="achieve-card"><div class="achieve-badge">&#x1F30D;</div><div class="achieve-text"><h4>ICCN 2026 — International Conference</h4><p>Attended the 2nd International Conference on Cybernetic Nexus, organised by the Dept. of CS. Gained exposure to research in cybersecurity, AI, and networked systems.</p></div></div>
+      <div class="achieve-card"><div class="achieve-badge">&#x1F396;</div><div class="achieve-text"><h4>NCC Cadet — National Cadet Corps</h4><p>Completed NCC training at school level, building discipline, leadership, and teamwork through structured drills and national service. Certificate awarded.</p></div></div>
+      <div class="achieve-card"><div class="achieve-badge">&#x1F4DA;</div><div class="achieve-text"><h4>Strong Academic Record</h4><p>93.8% in 10th and 83.5% in 12th at Velammal Matriculation Hr. Sec. School — consistent performance reflecting dedication and focus.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-label">Say Hello</div>
+    <div class="section-title">Get In Touch</div>
+    <div class="section-sub">Open to internships, collaborations, and new projects.</div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <p>I'm always excited to connect with new people, explore opportunities, and take on interesting challenges. Whether it's a project, an internship, or just a conversation — feel free to reach out!</p>
+        <div class="contact-item"><div class="contact-icon">&#x1F4E7;</div><div class="contact-text">pradhiksha766@gmail.com</div></div>
+        <div class="contact-item"><div class="contact-icon">&#x1F4DE;</div><div class="contact-text">+91-9500189123</div></div>
+        <div class="contact-item"><div class="contact-icon">&#x1F4CD;</div><div class="contact-text">Chennai, Tamil Nadu, India</div></div>
+        <div class="contact-item"><div class="contact-icon">&#x1F517;</div><div class="contact-text">linkedin.com/in/pradhiksha-b-984b47351</div></div>
+      </div>
+      <div class="contact-form">
+        <div class="form-group"><label>Your Name</label><input type="text" placeholder="Enter your name" id="cf-name"/></div>
+        <div class="form-group"><label>Email Address</label><input type="email" placeholder="Enter your email" id="cf-email"/></div>
+        <div class="form-group"><label>Message</label><textarea placeholder="Write your message here..." id="cf-msg"></textarea></div>
+        <button class="btn-send" onclick="sendMsg()">Send Message &#x2192;</button>
+        <div class="form-msg" id="form-msg">&#x2705; Message sent! I'll get back to you soon.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Designed &amp; built by <span>Pradhiksha B</span> &nbsp;&#x2022;&nbsp; Chennai, India &nbsp;&#x2022;&nbsp; 2026
+</footer>
+
+<script>
+function sendMsg(){
+  const n=document.getElementById('cf-name').value.trim();
+  const e=document.getElementById('cf-email').value.trim();
+  const m=document.getElementById('cf-msg').value.trim();
+  if(!n||!e||!m){alert('Please fill in all fields.');return;}
+  const msg=document.getElementById('form-msg');
+  msg.style.display='block';
+  document.getElementById('cf-name').value='';
+  document.getElementById('cf-email').value='';
+  document.getElementById('cf-msg').value='';
+  setTimeout(()=>{msg.style.display='none';},4000);
+}
+</script>
+</body>
+</html>
